@@ -1,2 +1,19 @@
 services:
-  
+  postgres:
+    image: pgvector/pgvector:pg18
+    container_name: godoc-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: godoc
+      POSTGRES_USER: godoc
+      POSTGRES_PASSWORD: godoc
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:
