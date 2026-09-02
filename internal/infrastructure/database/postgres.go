@@ -8,16 +8,16 @@ import (
 )
 
 type Config struct {
-	Host string
-	Port string
-	User string
-	Pass string
-	Name string
+	Host     string
+	Port     string
+	User     string
+	Password string
+	Name     string
 }
 
 func NewPostgresPool(ctx context.Context, cfg Config) (*pgxpool.Pool, error) {
 	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		cfg.User, cfg.Pass, cfg.Host, cfg.Port, cfg.Name)
+		cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Name)
 
 	pool, err := pgxpool.New(ctx, dsn)
 	if err != nil {
